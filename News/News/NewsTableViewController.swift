@@ -30,6 +30,8 @@ class NewsTableViewController: UITableViewController {
         fetchData()
     }
     
+        
+        
     
     //MARK: -Protocol
     
@@ -50,7 +52,7 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as!  PostTableViewCell
-        
+            
         let post = posts[indexPath.row]
         cell.authorLabel.text = post.author
         cell.sourceLabel.text = post.source
@@ -62,15 +64,12 @@ class NewsTableViewController: UITableViewController {
                 cell.imageArea.image = UIImage(data: data!)
             }
         }
-        return cell
-        
-        
+        return cell 
     }
     
     
     
     //MARK: -Function(s)
-    
     
     func openInBrowser(with urlString: String) {
         guard let url = URL(string: urlString) else { return }
@@ -84,7 +83,6 @@ class NewsTableViewController: UITableViewController {
     
     
     func configureStarView() {
-        
         title = "News"
         tableView.delegate = self
         tableView.dataSource = self
@@ -95,7 +93,6 @@ class NewsTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshView), for: .valueChanged)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
-        
     }
     
     
@@ -131,6 +128,7 @@ class NewsTableViewController: UITableViewController {
         ac.addAction(UIAlertAction(title: "cancel", style: .cancel))
         ac.addAction(UIAlertAction(title: "search", style: .default, handler: { (action) in
             NewsClient.word = ac.textFields![0].text!
+            self.refreshView()                                                                   
         }))
         present(ac, animated: true)
     }
