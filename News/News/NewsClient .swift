@@ -8,7 +8,7 @@
 import Foundation
 
 class NewsClient {
-    private let APIKey = "d9763f7b033445e38fc64501df4e05fe"
+    private let APIKey = "1cb620bdbd5442bb9622140c5cca0e14"
     static var word: String?
     
     func getLatestNewsUsing(handler: @escaping ([Post]) -> ()) {
